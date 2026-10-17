@@ -1,9 +1,10 @@
-</html>
+
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artist Login</title>
+  <title>Artist Login | Velvet Canvas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,17 +15,33 @@
 
       <form id="login-form">
         <label for="email">Email address</label>
-        <input id="email" type="email" required
-               placeholder="Your email address">
+        <input
+          id="email"
+          type="email"
+          autocomplete="username"
+          required
+          placeholder="Your email address"
+        >
 
         <label for="password">Password</label>
-        <input id="password" type="password" required
-               placeholder="Your password">
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          required
+          placeholder="Your password"
+        >
 
         <button type="submit">Log in</button>
         <p id="login-message" role="status"></p>
       </form>
 
-      <a href="index.html">← Back to portfolio</a>
+      <a href="./index.html">← Back to portfolio</a>
     </section>
   </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase.js"></script>
+  <script src="./login.js"></script>
+</body>
+</html>
