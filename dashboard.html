@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artist Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="artist-dashboard">
+    <header class="dashboard-header">
+      <div>
+        <p class="dashboard-eyebrow">YOUR CREATIVE SPACE</p>
+        <h1>Artist Dashboard 🎨</h1>
+        <p>Manage your beautiful collection of artwork.</p>
+      </div>
+      <button id="logout-button" type="button">Log out</button>
+    </header>
+
+    <section class="upload-card">
+      <h2>✨ Add new artwork</h2>
+      <p>Share a new piece with the world.</p>
+
+      <form id="upload-form">
+        <label for="art-title">Artwork title</label>
+        <input id="art-title" type="text" maxlength="120"
+               placeholder="Give your artwork a name" required>
+
+        <label for="art-description">Description</label>
+        <textarea id="art-description" maxlength="1000"
+                  placeholder="Tell us about your artwork"></textarea>
+
+        <label for="art-category">Category</label>
+        <select id="art-category">
+          <option value="Digital Art">Digital Art</option>
+          <option value="Illustration">Illustration</option>
+          <option value="Character Art">Character Art</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="art-file">Choose an image</label>
+        <input id="art-file" type="file"
+               accept="image/png,image/jpeg,image/webp,image/gif"
+               required>
+
+        <p class="dashboard-hint">PNG, JPG, WEBP or GIF. Maximum 10 MB.</p>
+
+        <button id="upload-button" type="submit">
+          Upload artwork 💜
+        </button>
+        <p id="upload-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="my-art-section">
+      <h2>🖼️ My artwork</h2>
+      <p>Artwork you've uploaded to your portfolio.</p>
+      <div id="my-art-grid" class="my-art-grid"></div>
+      <p id="gallery-message" role="status"></p>
+    </section>
+
+    <a class="dashboard-back" href="index.html">
+      ← View public portfolio
+    </a>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
