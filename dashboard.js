@@ -235,3 +235,12 @@ logoutButton.addEventListener("click", async () => {
     await loadArtwork();
   }
 })();
+const { data: userData } = await supabaseClient.auth.getUser();
+console.log("Logged-in user ID:", userData.user?.id);
+
+const { data, error } = await supabaseClient
+  .from("artworks")
+  .select("id, owner_id, title, image_path");
+
+console.log("Artwork records:", data);
+console.log("Error:", error);
