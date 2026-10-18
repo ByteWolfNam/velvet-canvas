@@ -43,10 +43,42 @@ async function loadArtwork() {
     const card = document.createElement("article");
     card.className = "my-art-card";
 
-    const img = document.createElement("img");
-    img.src = art.image_url;
-    img.alt = art.title;
-    img.loading = "lazy";
+   const img = document.createElement("img");
+img.alt = art.title || "Artwork";
+img.loading = "lazy";
+
+if (art.image_path) {
+  // First, try the public URL for this storage file.
+  const { data } = supabaseClient
+    .storage
+    .from("artworks")
+    .getPublicUrl(art.image_path);
+
+  img.src = data.publicUrl;
+
+  // If the bucket is private, try a temporary signed URL.
+  img.onerror = async () => {
+    img.onerror = null;
+
+    const { data: signedData, error } = await supabaseClient
+      .storage
+      .from("artworks")
+      .createSignedUrl(art.image_path, 3600);
+
+    if (!error && signedData?.signedUrl) {
+      img.src = signedData.signedUrl;
+    } else {
+      console.error(
+        "Could not load artwork image:",
+        art.title,
+        error
+      );
+    }
+  };
+} else if (art.image_url) {
+  // Fallback for older artwork records.
+  img.src = art.image_url;
+}
 
     const content = document.createElement("div");
     content.className = "my-art-card-content";
