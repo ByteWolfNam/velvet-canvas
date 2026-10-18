@@ -103,31 +103,38 @@ const dialogTitle = document.querySelector("#dialog-title");
 const dialogDescription = document.querySelector("#dialog-description");
 const closeDialog = document.querySelector("#dialog-close");
 
-// Open artwork previews.
-document.querySelectorAll(".art-image").forEach((button) => {
-  button.addEventListener("click", () => {
-    if (
-      !dialog ||
-      !dialogImage ||
-      !dialogTitle ||
-      !dialogDescription
-    ) {
-      return;
-    }
+ // Open previews for dynamically loaded artwork.
+document.addEventListener("click", (event) => {
+  const button = event.target.closest(".art-image");
 
-    const image = button.querySelector("img");
+  if (!button) return;
 
-    if (!image) return;
+  if (!dialog || !dialogImage || !dialogTitle || !dialogDescription) {
+    console.error("Artwork preview dialog elements are missing.");
+    return;
+  }
 
-    dialogImage.src = image.src;
-    dialogImage.alt = image.alt;
-    dialogTitle.textContent = button.dataset.title || image.alt || "Artwork";
-    dialogDescription.textContent = button.dataset.description || "";
+  const image = button.querySelector("img");
 
-    if (typeof dialog.showModal === "function") {
+  if (!image) {
+    console.error("Artwork image was not found.");
+    return;
+  }
+
+  dialogImage.src = image.currentSrc || image.src;
+  dialogImage.alt = image.alt || "Artwork";
+  dialogTitle.textContent =
+    button.dataset.title || image.alt || "Artwork";
+  dialogDescription.textContent =
+    button.dataset.description || "";
+
+  if (typeof dialog.showModal === "function") {
+    if (!dialog.open) {
       dialog.showModal();
     }
-  });
+  } else {
+    console.error("Your browser does not support the preview dialog.");
+  }
 });
 
 // Close the artwork preview using its close button.
