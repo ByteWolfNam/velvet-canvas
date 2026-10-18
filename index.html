@@ -2,14 +2,15 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-<link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f8faff">
   <meta name="description" content="A collection of original digital art, illustrations and creative experiments.">
+
   <title>Velvet Canvas — Digital Art Portfolio</title>
 
   <link rel="stylesheet" href="style.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -28,13 +29,8 @@
       <a href="#about">About me</a>
     </nav>
 
-    <button
-      class="theme-toggle"
-      id="theme-toggle"
-      type="button"
-      aria-label="Switch to dark mode"
-      title="Switch theme"
-    >
+    <button class="theme-toggle" id="theme-toggle" type="button"
+      aria-label="Switch to dark mode" title="Switch theme">
       <span id="theme-icon" aria-hidden="true">☾</span>
       <span id="theme-label">Dark mode</span>
     </button>
@@ -83,7 +79,7 @@
         <div class="art-label">
           <span>✧ A LITTLE INTRODUCTION</span>
           <strong>Welcome to my world</strong>
-          <span>Digital art & imagination</span>
+          <span>Digital art &amp; imagination</span>
         </div>
 
         <span class="floating-star star-one" aria-hidden="true">✧</span>
@@ -93,6 +89,7 @@
       <div class="hero-index">MY PORTFOLIO · MADE WITH LOVE ♡</div>
     </section>
 
+    <!-- PUBLIC ART GALLERY: ARTWORK LOADS FROM SUPABASE -->
     <section class="gallery section" id="gallery">
       <div class="section-heading">
         <div>
@@ -107,72 +104,19 @@
       </div>
 
       <div class="filters" id="filters" aria-label="Filter artwork">
-   
-      <div class="art-grid" id="art-grid">
-        <article class="art-card" data-category="portrait">
-          <button
-            class="art-image"
-            data-title="Soft light"
-            data-description="A portrait study."
-            aria-label="View Soft light artwork"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=85"
-              alt="Portrait photography placeholder"
-              loading="lazy"
-            >
-            <span class="image-overlay">Take a closer look ↗</span>
-          </button>
-          <div class="art-meta">
-            <div><h3>Soft light</h3><p>Portrait study</p></div>
-            <span>♡ 01</span>
-          </div>
-        </article>
-
-        <article class="art-card" data-category="fantasy">
-          <button
-            class="art-image"
-            data-title="Dreamscape"
-            data-description="A little study of a dreamlike world."
-            aria-label="View Dreamscape artwork"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=700&q=85"
-              alt="Dreamlike landscape placeholder"
-              loading="lazy"
-            >
-            <span class="image-overlay">Take a closer look ↗</span>
-          </button>
-          <div class="art-meta">
-            <div><h3>Dreamscape</h3><p>Fantasy study</p></div>
-            <span>♡ 02</span>
-          </div>
-        </article>
-
-        <article class="art-card" data-category="character">
-          <button
-            class="art-image"
-            data-title="Colourful thoughts"
-            data-description="A colourful artwork study."
-            aria-label="View Colourful thoughts artwork"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=700&q=85"
-              alt="Colourful artwork placeholder"
-              loading="lazy"
-            >
-            <span class="image-overlay">Take a closer look ↗</span>
-          </button>
-          <div class="art-meta">
-            <div><h3>Colourful thoughts</h3><p>Character inspiration</p></div>
-            <span>♡ 03</span>
-          </div>
-        </article>
+        <button class="filter active" type="button" data-filter="all">All art</button>
+        <button class="filter" type="button" data-filter="digital art">Digital Art</button>
+        <button class="filter" type="button" data-filter="illustration">Illustration</button>
+        <button class="filter" type="button" data-filter="character art">Character Art</button>
+        <button class="filter" type="button" data-filter="other">Other</button>
       </div>
 
-      <p class="demo-note">
-        These are sample images for development. Replace them with the artist's
-        own artwork before publishing.
+      <div class="art-grid" id="art-grid">
+        <!-- public-gallery.js inserts artwork here -->
+      </div>
+
+      <p id="public-gallery-message" role="status" aria-live="polite">
+        Loading artwork...
       </p>
     </section>
 
@@ -210,7 +154,9 @@
   </main>
 
   <footer>
-    <a class="logo" href="#home"><span class="logo-star">✳</span> velvet canvas</a>
+    <a class="logo" href="#home">
+      <span class="logo-star">✳</span> velvet canvas
+    </a>
     <p>Created with love, one pixel at a time. ♡</p>
     <a href="#home">Back to top ↑</a>
   </footer>
@@ -225,9 +171,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase.js"></script>
   <script src="script.js"></script>
-</body>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase.js"></script>
-  <script src="login.js"></script>
+  <script src="public-gallery.js"></script>
 </body>
 </html>
